@@ -35,12 +35,13 @@ body {
 }
 
 #message {
-  font-size: clamp(38px, 9vw, 65px);
+  font-size: clamp(30px, 8vw, 65px);
   font-weight: bold;
   color: #ff69b4;
   text-shadow: 0 0 15px #ff1493;
   min-height: 90px;
   letter-spacing: 3px;
+  white-space: pre-line;
 }
 
 #message .styled {
@@ -125,7 +126,6 @@ button {
   color: white;
   margin-top: 15px;
 }
-
 </style>
 </head>
 
@@ -191,13 +191,14 @@ let timer = setInterval(() => {
 }, 1000);
 
 function showWords() {
+
   let words = [
-    
-    "mujhe pta h tum relationship m nhi aana chahti 
-    but m fir bhi pta nhi baar baar kyu bole 
-    ja rha hu tumhare andr kch toh alg h 
-    or tumhare nkhre uthane ko taiyar huu 
-    aaj last baar try kar raha hoon...",
+    "mujhe pta h tum relationship m nhi aana chahti",
+    "but m fir bhi pta nhi baar baar kyu bole",
+    "ja rha hu tumhare andr kch toh alg h",
+    "or tumhare nkhre uthane ko taiyar huu",
+    "aaj last baar try kar raha hoon...",
+
     "Pata nhii tum haan karogi ya naaa,",
     "but phir bhi...",
     "I",
@@ -208,31 +209,37 @@ function showWords() {
   let index = 0;
 
   function nextWord() {
+
     if (index < words.length) {
+
       message.innerHTML =
         '<span class="styled">' + words[index] + '</span>';
 
       index++;
+
       setTimeout(nextWord, 1800);
+
     } else {
+
       document.getElementById("buttons").style.display = "flex";
+
     }
   }
 
-  nextWord();
-}
   nextWord();
 }
 
 let noClicks = 0;
 
 function sayNo() {
+
   noClicks++;
 
   let noBtn = document.getElementById("noBtn");
   let newSize = 1 - (noClicks * 0.2);
 
-  noBtn.style.transform = "scale(" + Math.max(0, newSize) + ")";
+  noBtn.style.transform =
+    "scale(" + Math.max(0, newSize) + ")";
 
   if (noClicks >= 5) {
     noBtn.style.display = "none";
@@ -240,23 +247,32 @@ function sayNo() {
 }
 
 function sayYes() {
+
   document.getElementById("buttons").style.display = "none";
+
   document.getElementById("smile").style.display = "block";
 
-  document.getElementById("letterBtn").style.display = "inline-block";
+  document.getElementById("letterBtn").style.display =
+    "inline-block";
 }
 
 function openLetter() {
-  document.getElementById("letterOverlay").style.display = "flex";
+
+  document.getElementById("letterOverlay").style.display =
+    "flex";
 }
 
 function closeLetter() {
-  document.getElementById("letterOverlay").style.display = "none";
+
+  document.getElementById("letterOverlay").style.display =
+    "none";
 
   document.getElementById("smile").style.display = "none";
+
   document.getElementById("letterBtn").style.display = "none";
 
-  message.innerHTML = '<span class="styled">I LOVE YOU❤️I LOVE YOU❤️I LOVE YOU❤️I LOVE YOU❤️I LOVE YOU❤️I LOVE YOU❤️</span>';
+  message.innerHTML =
+    '<span class="styled">I LOVE YOU❤️I LOVE YOU❤️I LOVE YOU❤️I LOVE YOU❤️I LOVE YOU❤️</span>';
 }
 
 </script>
