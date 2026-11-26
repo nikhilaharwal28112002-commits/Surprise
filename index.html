@@ -191,20 +191,31 @@ let timer = setInterval(() => {
 }, 1000);
 
 function showWords() {
-  let words = ["I", "LOVE", "YOU ❤️"];
+  let words = [
+    "Finally last baar try kar raha hoon...",
+    "Pata hai tum haan karogi ya nahi,",
+    "but phir bhi...",
+    "I",
+    "LOVE",
+    "YOU ❤️"
+  ];
+
   let index = 0;
 
   function nextWord() {
     if (index < words.length) {
       message.innerHTML =
         '<span class="styled">' + words[index] + '</span>';
+
       index++;
-      setTimeout(nextWord, 1200);
+      setTimeout(nextWord, 1800);
     } else {
       document.getElementById("buttons").style.display = "flex";
     }
   }
 
+  nextWord();
+}
   nextWord();
 }
 
