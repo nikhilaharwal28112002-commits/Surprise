@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love Surprise ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #080008;
+  color: white;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+}
+
+#countdown {
+  font-size: 65px;
+  color: #ff69b4;
+  text-shadow: 0 0 20px #ff1493;
+}
+
+#message {
+  font-size: clamp(38px, 9vw, 65px);
+  font-weight: bold;
+  color: #ff69b4;
+  text-shadow: 0 0 15px #ff1493;
+  min-height: 90px;
+  letter-spacing: 3px;
+}
+
+#message .styled {
+  font-family: Georgia, serif;
+  font-variant: small-caps;
+}
+
+.buttons {
+  margin-top: 30px;
+  display: none;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+button {
+  border: none;
+  padding: 13px 25px;
+  border-radius: 30px;
+  font-size: 17px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  background: #ff1493;
+  color: white;
+}
+
+#noBtn {
+  background: white;
+  color: #ff1493;
+}
+
+#smile {
+  display: none;
+  font-size: 75px;
+  margin-top: 20px;
+}
+
+#letterBtn {
+  display: none;
+  margin-top: 25px;
+  background: #ff69b4;
+  color: white;
+}
+
+#letterOverlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  padding: 18px;
+  z-index: 10;
+}
+
+.letter {
+  background: #ffe4ef;
+  color: #7a1748;
+  width: 100%;
+  max-width: 420px;
+  max-height: 85vh;
+  overflow-y: auto;
+  padding: 28px 22px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px #ff1493;
+  font-family: Georgia, serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.letter h2 {
+  font-family: Arial, sans-serif;
+  font-variant: small-caps;
+  letter-spacing: 2px;
+}
+
+#closeBtn {
+  background: #ff1493;
+  color: white;
+  margin-top: 15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div id="countdown">5</div>
+
+  <div id="message"></div>
+
+  <div class="buttons" id="buttons">
+    <button id="yesBtn" onclick="sayYes()">YES ❤️</button>
+    <button id="noBtn" onclick="sayNo()">NO</button>
+  </div>
+
+  <div id="smile">😊</div>
+
+  <button id="letterBtn" onclick="openLetter()">
+    LETTER FOR YOU 💌
+  </button>
+
+</div>
+
+<div id="letterOverlay">
+  <div class="letter">
+    <h2>ʟᴇᴛᴛᴇʀ ꜰᴏʀ ʏᴏᴜ 💌</h2>
+
+    <p>
+      I just want to tell you something special. ❤️
+      <br><br>
+      You are a beautiful part of my life.
+      Your smile makes everything feel better.
+      <br><br>
+      I hope you always stay happy.
+      Never forget how special you are. 💗
+      <br><br>
+      With lots of love ❤️
+    </p>
+
+    <button id="closeBtn" onclick="closeLetter()">
+      CLOSE
+    </button>
+  </div>
+</div>
+
+<script>
+
+let countdown = 5;
+let countElement = document.getElementById("countdown");
+let message = document.getElementById("message");
+
+let timer = setInterval(() => {
+  countdown--;
+
+  if (countdown > 0) {
+    countElement.innerText = countdown;
+  } else {
+    clearInterval(timer);
+    countElement.style.display = "none";
+    showWords();
+  }
+}, 1000);
+
+function showWords() {
+  let words = ["I", "LOVE", "YOU ❤️"];
+  let index = 0;
+
+  function nextWord() {
+    if (index < words.length) {
+      message.innerHTML =
+        '<span class="styled">' + words[index] + '</span>';
+      index++;
+      setTimeout(nextWord, 1200);
+    } else {
+      document.getElementById("buttons").style.display = "flex";
+    }
+  }
+
+  nextWord();
+}
+
+let noClicks = 0;
+
+function sayNo() {
+  noClicks++;
+
+  let noBtn = document.getElementById("noBtn");
+  let newSize = 1 - (noClicks * 0.2);
+
+  noBtn.style.transform = "scale(" + Math.max(0, newSize) + ")";
+
+  if (noClicks >= 5) {
+    noBtn.style.display = "none";
+  }
+}
+
+function sayYes() {
+  document.getElementById("buttons").style.display = "none";
+  document.getElementById("smile").style.display = "block";
+
+  document.getElementById("letterBtn").style.display = "inline-block";
+}
+
+function openLetter() {
+  document.getElementById("letterOverlay").style.display = "flex";
+}
+
+function closeLetter() {
+  document.getElementById("letterOverlay").style.display = "none";
+
+  document.getElementById("smile").style.display = "none";
+  document.getElementById("letterBtn").style.display = "none";
+
+  message.innerHTML = '<span class="styled">I LOVE YOU ❤️</span>';
+}
+
+</script>
+
+</body>
+</html>
